@@ -12,7 +12,7 @@
 			$("#submit").click(function() {
 				var text = $("#text").val();
 				$.ajax({
-					url: "/openai/get/",
+					url: "/ai/get/",
 					type: "POST",
 					data: {text: text,'csrfmiddlewaretoken': '{{ csrf_token }}'},
 					dataType: "json",
@@ -70,6 +70,6 @@
 		<br>
 		<input type="submit" id="submit" value="Submit">
 	</div>
-	<div id="response"></div>
+	<pre id="response" style="text-align: left;font-size: 16px;color: red"></pre>
 </body>
 </html>
