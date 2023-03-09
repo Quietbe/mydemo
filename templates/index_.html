@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+	<meta charset="UTF-8">
+	<title>Ajax Example</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+
+			$("#submit").click(function() {
+				var text = $("#text").val();
+				$.ajax({
+					url: "/openai/get/",
+					type: "POST",
+					data: {text: text,'csrfmiddlewaretoken': '{{ csrf_token }}'},
+					dataType: "json",
+                    {#contentType: 'application/json',#}
+					success: function(data) {
+
+						$("#response").html(data.content);
+					},
+					error: function() {
+						$("#response").html("An error occurred.");
+					}
+				});
+			});
+
+        });
+	</script>
+	<style>
+		form {
+			margin-top: 50px;
+			text-align: center;
+		}
+
+		input[type="text"] {
+			font-size: 16px;
+			padding: 10px;
+			width: 400px;
+		}
+
+		input[type="submit"] {
+			background-color: #0099ff;
+			border: 0;
+			border-radius: 3px;
+			color: #ffffff;
+			cursor: pointer;
+			font-size: 16px;
+			padding: 10px;
+		}
+
+		input[type="submit"]:hover {
+			background-color: #0066cc;
+		}
+
+		#response {
+			margin-top: 20px;
+			padding: 10px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div style="align-content: center">
+		<label for="text">Enter some text:</label>
+		<br>
+		<input type="text" id="text">
+		<br>
+		<input type="submit" id="submit" value="Submit">
+	</div>
+	<div id="response"></div>
+</body>
+</html>

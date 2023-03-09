@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Login Form</title>
+	<style>
+		body {
+			background-color: #f7f7f7;
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+			line-height: 1.5;
+			margin: 0;
+			padding: 0;
+		}
+
+		form {
+			background-color: #ffffff;
+			border: 1px solid #d8d8d8;
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+			margin: 50px auto;
+			max-width: 400px;
+			padding: 20px;
+		}
+
+		h1 {
+			font-size: 24px;
+			margin-bottom: 20px;
+			text-align: center;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 8px;
+		}
+
+		input[type="text"],
+		input[type="password"] {
+			background-color: #f7f7f7;
+			border: 1px solid #d8d8d8;
+			border-radius: 3px;
+			box-sizing: border-box;
+			font-size: 16px;
+			padding: 10px;
+			width: 100%;
+		}
+
+		input[type="submit"] {
+			background-color: #0099ff;
+			border: 0;
+			border-radius: 3px;
+			color: #ffffff;
+			cursor: pointer;
+			font-size: 16px;
+			padding: 10px;
+			width: 100%;
+		}
+
+		input[type="submit"]:hover {
+			background-color: #0066cc;
+		}
+
+		.error {
+			color: red;
+			font-size: 12px;
+			margin-top: 8px;
+		}
+	</style>
+</head>
+<body>
+	<form action="/openai/login/" method="post">
+        {% csrf_token %}
+		<h1>登录</h1>
+		<label for="username">用户名:</label>
+		<input type="text" id="username" name="username" required>
+		<label for="password">密码:</label>
+		<input type="password" id="password" name="password" required>
+		<input type="submit" value="Login">
+		<div class="error">{{ error }}</div>
+	</form>
+</body>
+</html>
