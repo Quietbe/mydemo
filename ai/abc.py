@@ -1,6 +1,6 @@
 import openai
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 
 class Gpt(object):
@@ -10,14 +10,14 @@ class Gpt(object):
             model="text-davinci-003",
             prompt=prompt,
             temperature=0.8,
-            max_tokens=1500,
+            max_tokens=3000,
             top_p=1,
             frequency_penalty=0,
             presence_penalty=0.6,
             stop=[" Human:", " AI:"]
         )
         message = completions.choices[0].text.strip()
-        return message
+        return [message, completions]
 
 # def generate_text(prompt):
 #     completions = openai.Completion.create(
